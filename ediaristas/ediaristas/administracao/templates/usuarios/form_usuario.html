@@ -4,33 +4,35 @@
 {% block content %}
 <div class="card card-primary">
     <div class="card-header">
-        <div class="card-title">Cadastro de Usuário</div>
+        <div class="card-title">{% if edicao is None %}Cadastro{% else %}Edição{% endif %} de Usuário</div>
     </div>
     <div class="card-body">
         <form action="" method="post">
             {% csrf_token %}       
             <div class="form-group">
                 {% bootstrap_field form_usuario.username %}
-            </div>
-            <div class="row">
-                <div class="col-md-6">
+                </div>
+                {% if edicao is None %}
+                <div class="row">
+                    <div class="col-md-6">
                     <div class="form-group">
-                        {% bootstrap_field form_usuario.password1 %}
+                    {% bootstrap_field form_usuario.password1 %}
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">                    
-                        {% bootstrap_field form_usuario.password2 %}
                     </div>
-                </div>
-            </div>
-            <div class="form-group">                    
+                    <div class="col-md-6">
+                    <div class="form-group"> 
+                    {% bootstrap_field form_usuario.password2 %}
+                    </div>
+                    </div>
+                    </div>
+                {% endif %}
+                <div class="form-group"> 
                 {% bootstrap_field form_usuario.first_name %}
-            </div>
-            <div class="form-group">                    
+                </div>
+                <div class="form-group"> 
                 {% bootstrap_field form_usuario.email %}
             </div>
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
         </form>
     </div>
 </div>
